@@ -5,11 +5,12 @@ const userRoutes=require('./routes/userRoutes.js')
 const app=express();
 app.use(cors());
 app.use(express.json());
-mongoose.connect('mongodb+srv://alina:123456@cluster0.9ewtyjz.mongodb.net/?retryWrites=true&w=majority',{
-useNewUrlParser : true,
-useUnifiedTopology : true,
-}
-) .then(() => {
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}) .then(() => {
     console.log("DB Connetion Successfull");
   })
   .catch((err) => {
